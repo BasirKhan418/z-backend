@@ -11,16 +11,16 @@ const SendCompletionCertificate = async (email, name, url) => {
         const sanitizedName = name.replace(/[^a-zA-Z0-9]/g, '_');
         const filename = `Internship_Completion_Certificate_${sanitizedName}.pdf`;
         const transporter = nodemailer_1.default.createTransport({
-            host: "email-smtp.us-east-1.amazonaws.com",
+            host: "email-smtp.ap-south-1.amazonaws.com",
             port: 587,
-            secure: false,
+            secure: false, // true for port 465, false for other ports
             auth: {
-                user: process.env.EMAIL,
-                pass: process.env.EMAIL_PASS,
-            }
+                user: process.env.EMAIL, //
+                pass: process.env.EMAIL_PASS, //
+            },
         });
         const info = await transporter.sendMail({
-            from: '"HR Infotact" <hr@infotactlearning.in>',
+            from: '"HR Zaalima" <hr@zaalima.in>',
             to: `${email}`,
             subject: "Congratulations on Successfully Completing Your Internship!",
             text: "Congratulations on successfully completing your internship at Infotact Solutions!",

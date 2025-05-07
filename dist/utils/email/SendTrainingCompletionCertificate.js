@@ -20,7 +20,7 @@ const SendTrainingCompletionCertificate = async (email, name, url) => {
             }
         });
         const info = await transporter.sendMail({
-            from: '"HR Infotact" <hr@infotactlearning.in>',
+            from: '"HR Zaalima" <hr@zaalima.in>',
             to: `${email}`,
             subject: "Internship Training Completion Certificate",
             text: "Congratulations on successfully completing your training during the internship!",

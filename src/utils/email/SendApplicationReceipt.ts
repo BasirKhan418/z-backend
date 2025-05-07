@@ -8,15 +8,15 @@ const SendApplicationReceipt = async (
   link: string
 ) => {
   try {
-    const transporter = await nodemailer.createTransport({
-      host: "email-smtp.ap-south-1.amazonaws.com",
-      port: 587,
-      secure: false,
-      auth: {
-        user: process.env.EMAIL,
-        pass: process.env.EMAIL_PASS,
-      },
-    });
+   const transporter = nodemailer.createTransport({
+        host: "email-smtp.ap-south-1.amazonaws.com",
+        port: 587,
+        secure: false, // true for port 465, false for other ports
+        auth: {
+          user: process.env.EMAIL, //
+          pass: process.env.EMAIL_PASS, //
+        },
+      });
 
     const info = await transporter.sendMail({
       from: '"Zaalima HR" <hr@zaalima.in>',

@@ -6,13 +6,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const nodemailer_1 = __importDefault(require("nodemailer"));
 const SendApplicationReceipt = async (email, name, domain, duration, link) => {
     try {
-        const transporter = await nodemailer_1.default.createTransport({
+        const transporter = nodemailer_1.default.createTransport({
             host: "email-smtp.ap-south-1.amazonaws.com",
             port: 587,
-            secure: false,
+            secure: false, // true for port 465, false for other ports
             auth: {
-                user: process.env.EMAIL,
-                pass: process.env.EMAIL_PASS,
+                user: process.env.EMAIL, //
+                pass: process.env.EMAIL_PASS, //
             },
         });
         const info = await transporter.sendMail({

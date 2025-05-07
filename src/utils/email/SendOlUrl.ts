@@ -11,15 +11,15 @@ const SendOlUrl = async (
   const sanitizedFilename = name.replace(/[^a-zA-Z0-9]/g, "_") + ".pdf";
   try {
     let url1 = `${process.env.PUBLIC_HOST}/employe?id=${id} `;
-    const transporter = await nodemailer.createTransport({
-      host: "email-smtp.us-east-1.amazonaws.com",
-      port: 587,
-      secure: false, // true for port 465, false for other ports
-      auth: {
-        user: process.env.EMAIL, //
-        pass: process.env.EMAIL_PASS, //
-      },
-    });
+       const transporter = nodemailer.createTransport({
+         host: "email-smtp.ap-south-1.amazonaws.com",
+         port: 587,
+         secure: false, // true for port 465, false for other ports
+         auth: {
+           user: process.env.EMAIL, //
+           pass: process.env.EMAIL_PASS, //
+         },
+       });
     const info = await transporter.sendMail({
       from: '"HR Zaalima " <hr@zaalima.in>', // sender address
       to: `${email}`, // list of receivers

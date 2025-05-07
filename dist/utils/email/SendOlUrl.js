@@ -10,8 +10,8 @@ const SendOlUrl = async (email, name, url, score, id) => {
     const sanitizedFilename = name.replace(/[^a-zA-Z0-9]/g, "_") + ".pdf";
     try {
         let url1 = `${process.env.PUBLIC_HOST}/employe?id=${id} `;
-        const transporter = await nodemailer_1.default.createTransport({
-            host: "email-smtp.us-east-1.amazonaws.com",
+        const transporter = nodemailer_1.default.createTransport({
+            host: "email-smtp.ap-south-1.amazonaws.com",
             port: 587,
             secure: false, // true for port 465, false for other ports
             auth: {
