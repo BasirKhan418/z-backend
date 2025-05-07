@@ -60,7 +60,7 @@ app.use("/submitflow",submitflow);
 app.use("/getall",getall);
 app.use("/certificate",certificate);
 app.use("/coupon",couponcrud);
-app.get('/', (req, res) => {
+app.get('/', (req: express.Request, res: express.Response) => {
     res.send('Hello World');
 })
 app.listen(3001, () => {
