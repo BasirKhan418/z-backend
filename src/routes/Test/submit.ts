@@ -2,6 +2,7 @@ import express from 'express';
 const router = express.Router();
 import User from '../../models/User';
 import Testq from '../../models/Testq';
+import SubmitFlow from '../../models/SubmitFlow';
 import jwt from "jsonwebtoken";
 router.post('/submit', async (req, res):Promise<any>=> {
 try{
@@ -20,9 +21,22 @@ if(item.answer==answers[index]){
     totalcorrect++;
 }
 })
+function convertToISO(dateStr:string) {
+    // Split the date string by '/'
+    const [day, month, year] = dateStr.split('/');
+    
+    // Create a new Date object
+    // Note: months in JS Date are 0-indexed, so we subtract 1 from month
+    const date = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+    
+    // Convert to ISO string (this will give you the full ISO format)
+    return date.toISOString();
+  }
 const totalp = Math.floor((totalcorrect/total)*100);
 console.log(totalp,totalcorrect,total);
-let user =await User.findOneAndUpdate({email:decoded.email},{testResult:totalp,appeartest:true,testcorrect:`${totalcorrect}/${total}`,testid:testid,startdate:new Date()});
+let date = await SubmitFlow.find({});
+let startdate = convertToISO(date[0].startdate);
+let user =await User.findOneAndUpdate({email:decoded.email},{testResult:totalp,appeartest:true,testcorrect:`${totalcorrect}/${total}`,testid:testid,startdate:startdate});
 if(user==null){
     return res.status(200).json({message:"User not found try again",success:false});
 }
