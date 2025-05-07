@@ -1,0 +1,68 @@
+import express from 'express';
+import 'dotenv/config';
+import login from './routes/auth/login';
+import verify from './routes/verify/verify';
+import cors from 'cors';
+import adminlogin from './routes/auth/adminlogin';
+import adminverify from './routes/verify/adminverify';
+import connectMongodb from './db/connectMongodb';
+import addtestqs from './routes/Test/addtestqs';
+import addtest from './routes/Test/addtest';
+import submit from './routes/Test/submit';
+import leaderboard from './routes/Test/leaderboard';
+import sendofferl from './routes/offer/sendofferl';
+import adminleader from './routes/Test/adminleader';
+import addtestend from './routes/Test/addtestend';
+import addtestqsend from './routes/Test/addtestqsend';
+import submitend from './routes/Test/submitend';
+import file from './routes/upload/file';
+import precheckout from './routes/payment/precheckout';
+import postcheckout from './routes/payment/postcheckout';
+import verifybyid from './routes/verify/verifybyid';
+import fileend from './routes/upload/fileend';
+import Whatsapp from './routes/crud/whatsapp';
+import sendoffer from './routes/email/sendoffer';
+import usersubmit from './routes/add/usersubmit';
+import submitflow from './routes/add/submitflow';
+import getall from './routes/analytics/getall';
+import certificate from './routes/verify/certificate';
+import couponcrud from './routes/coupon/couponcrud';
+import deleteleads from './routes/crud/deleteleads';
+const app = express();
+app.use(cors());
+app.use(express.json());
+//connect to database
+
+connectMongodb();
+app.use('/user',login);
+app.use('/deleteleads',deleteleads);
+app.use('/api/whatsapp',Whatsapp);
+app.use('/api/precheckout',precheckout);
+app.use('/api/postcheckout',postcheckout);
+app.use('/get-upload-url',file);
+app.use('/get-upload-url/end',fileend);
+app.use('/verify',verify);
+app.use('/verify/id',verifybyid);
+app.use('/admin',adminlogin);
+app.use('/admin/verify',adminverify);
+app.use("/api/addtest",addtest);
+app.use("/api/addtestqs",addtestqs);
+app.use("/api/addtestend",addtestend);
+app.use("/api/addtestqsend",addtestqsend);
+app.use("/leaderboard",leaderboard);
+app.use("/admin/leaderboard",adminleader);
+app.use("/test",submit);
+app.use("/testend",submitend);
+app.use("/intern",sendofferl);
+app.use("/email",sendoffer);
+app.use("/add",usersubmit);
+app.use("/submitflow",submitflow);
+app.use("/getall",getall);
+app.use("/certificate",certificate);
+app.use("/coupon",couponcrud);
+app.get('/', (req, res) => {
+    res.send('Hello World');
+})
+app.listen(3001, () => {
+  console.log('Server is running on port 3001');
+});
