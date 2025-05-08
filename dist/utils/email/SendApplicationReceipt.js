@@ -136,7 +136,11 @@ const SendApplicationReceipt = async (email, name, domain, duration, link) => {
     
             <p>We appreciate your interest and are excited to review your profile. You’ll hear from us within 5–7 business days.</p>
     
-            <a class="btn" href="https://zaalima.in/">Visit Our Website</a>
+<div style="display: flex; gap: 10px;">
+    <a href="https://zaalima.in/" class="btn" style="padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; text-align: center;">Visit Our Website</a>
+    <a href="${link}" class="btn" style="padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; text-align: center;">Join WhatsApp Group</a>
+</div>
+
           </div>
           <div class="footer">
             &copy; ${new Date().getFullYear()} Zaalima Development. All rights reserved.

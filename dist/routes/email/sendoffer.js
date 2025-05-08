@@ -29,6 +29,8 @@ router.get("/ol", async (req, res) => {
         let fail = 0;
         //if its found;
         remaining.forEach(async (user) => {
+            console.log(user);
+            console.log(user.olurl);
             let send = await (0, SendOlUrl_1.default)(user.email, user.name, user.olurl, user.testResult, user._id);
             console.log(send);
             if (send) {

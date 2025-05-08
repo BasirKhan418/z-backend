@@ -8,15 +8,15 @@ const SendApplicationReceipt = async (
   link: string
 ) => {
   try {
-   const transporter = nodemailer.createTransport({
-        host: "email-smtp.ap-south-1.amazonaws.com",
-        port: 587,
-        secure: false, // true for port 465, false for other ports
-        auth: {
-          user: process.env.EMAIL, //
-          pass: process.env.EMAIL_PASS, //
-        },
-      });
+    const transporter = nodemailer.createTransport({
+      host: "email-smtp.ap-south-1.amazonaws.com",
+      port: 587,
+      secure: false, // true for port 465, false for other ports
+      auth: {
+        user: process.env.EMAIL, //
+        pass: process.env.EMAIL_PASS, //
+      },
+    });
 
     const info = await transporter.sendMail({
       from: '"Zaalima HR" <hr@zaalima.in>',
@@ -140,7 +140,11 @@ const SendApplicationReceipt = async (
     
             <p>We appreciate your interest and are excited to review your profile. You’ll hear from us within 5–7 business days.</p>
     
-            <a class="btn" href="https://zaalima.in/">Visit Our Website</a>
+<div style="display: flex; gap: 10px;">
+    <a href="https://zaalima.in/" class="btn" style="padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; text-align: center;">Visit Our Website</a>
+    <a href="${link}" class="btn" style="padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; text-align: center;">Join WhatsApp Group</a>
+</div>
+
           </div>
           <div class="footer">
             &copy; ${new Date().getFullYear()} Zaalima Development. All rights reserved.

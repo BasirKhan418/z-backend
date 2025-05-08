@@ -24,6 +24,8 @@ let count:number = 0;
 let fail:number = 0;
 //if its found;
         remaining.forEach(async(user)=>{
+            console.log(user);
+            console.log(user.olurl)
      let send =  await SendOlUrl(user.email,user.name,user.olurl,user.testResult,user._id);
      console.log(send);
      if(send){
